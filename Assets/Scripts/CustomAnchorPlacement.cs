@@ -16,10 +16,14 @@ public class CustomAnchorPlacement : MonoBehaviour
     void Update()
     {
         Vector3 newPosition = reference.position;
+        Quaternion newRotation = reference.rotation;
 
         newPosition.y = 0;
+        newRotation.x = 0;
+        newRotation.z = 0;
 
         transform.position = newPosition;
+        transform.rotation = newRotation;
     }
 
 }

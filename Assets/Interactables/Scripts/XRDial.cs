@@ -18,12 +18,12 @@ public class XRDial : Interactable
     Vector3 currGripPos;
 
     //Is called once when the interactable is initially between the thumb and index finger
-    public override void Focus(HandSelector hand, bool state)
+    public override void Focus(HandSelectorV2 hand, bool state)
     {
         if  (!state) firstFrame = true;
     }
 
-    public override void FocusUpdate(HandSelector hand, bool state)
+    public override void FocusUpdate(HandSelectorV2 hand, bool state)
     {
         if (isGripped(hand))
         {
@@ -73,7 +73,7 @@ public class XRDial : Interactable
     }
 
     //Checks if the object is currently being gripped
-    bool isGripped(HandSelector hand)
+    bool isGripped(HandSelectorV2 hand)
     {
         if (hand.pressDist <= actionDist)
         {

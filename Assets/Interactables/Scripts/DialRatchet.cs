@@ -24,7 +24,7 @@ public class DialRatchet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     bool IsCloserToZero()
@@ -81,7 +81,7 @@ public class DialRatchet : MonoBehaviour
                     if (lastState != i) state_changed.Invoke(i);
                     lastState = i;
                 }
-            }
+            }        
         }
     }
 }

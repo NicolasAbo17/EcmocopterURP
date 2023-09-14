@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Connecting.unity
-    guid: d0d98731b97487843a21d2a454c1eb9e
+    path: Assets/Scenes/EcmocopterTest.unity
+    guid: 83e96d18ecb488644a77c445f9c15de7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 217e22894aa902446a0bc4b791629abb,
       type: 2}

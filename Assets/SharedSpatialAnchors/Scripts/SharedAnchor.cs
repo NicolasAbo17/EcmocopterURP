@@ -90,16 +90,25 @@ public class SharedAnchor : MonoBehaviour
     private void Awake()
     {
         _spatialAnchor = GetComponent<OVRSpatialAnchor>();
+        if (_spatialAnchor == null)
+        {
+            SampleController.Instance.Log("Became null", true);
+            try
+            {
+                _spatialAnchor = gameObject.AddComponent<OVRSpatialAnchor>();
+
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
+            SampleController.Instance.Log("Anchor: " + (_spatialAnchor == null), true);
+        }
     }
 
     private void Update()
     {
-        if (_spatialAnchor == null)
-        {
-            SampleController.Instance.Log("Became null");
-            _spatialAnchor = GetComponent<OVRSpatialAnchor>();
-            SampleController.Instance.Log("Anchor: " + _spatialAnchor);
-        }
+        
     }
 
     private IEnumerator Start()
@@ -116,8 +125,9 @@ public class SharedAnchor : MonoBehaviour
         else
         {
             _spatialAnchor = GetComponent<OVRSpatialAnchor>();
-            if (_spatialAnchor != null)
+            if (_spatialAnchor == null)
             {
+                SampleController.Instance.Log("Became null");
                 Destroy(gameObject);
             }
             else

@@ -24,7 +24,7 @@ public class TurnMeOn : MonoBehaviour
         Environment = GameObject.FindGameObjectsWithTag("Environment");
         manager = GameObject.FindGameObjectsWithTag("CameraRig");
         controllers = GameObject.FindGameObjectsWithTag("Controllers");
-        Mover = GameObject.FindGameObjectsWithTag("mover");
+        Mover = GameObject.FindGameObjectsWithTag("Mover");
         targetCamera = Camera.main;
 
         targetCamera.clearFlags = CameraClearFlags.Skybox;

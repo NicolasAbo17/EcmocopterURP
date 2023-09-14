@@ -37,7 +37,7 @@ public class XRButton : Interactable
     bool hasFocus = false;
 
     //----Is called once when the index finger points at the button----
-    public override void Focus(HandSelector hand, bool state)
+    public override void Focus(HandSelectorV2 hand, bool state)
     {
         //When the button is focused highlight it (optional)
         hasFocus = state;
@@ -77,9 +77,9 @@ public class XRButton : Interactable
     }
 
     //----Is called like Update() but only when focus is recieved----
-    public override void FocusUpdate(HandSelector hand, bool state)
+    public override void FocusUpdate(HandSelectorV2 hand, bool state)
     {
-        //When the button is being pressed cakk the appropriate function
+        //When the button is being pressed call the appropriate function
         if (hand.pressDist <= pressDistance)
         {
             Pressed(hand);
@@ -88,7 +88,7 @@ public class XRButton : Interactable
     //---------------------------------------------------------------
 
     //----Is called when the button is being pressed----
-    public void Pressed(HandSelector hand)
+    public void Pressed(HandSelectorV2 hand)
     {
 
 

@@ -90,25 +90,6 @@ public class SharedAnchor : MonoBehaviour
     private void Awake()
     {
         _spatialAnchor = GetComponent<OVRSpatialAnchor>();
-        if (_spatialAnchor == null)
-        {
-            SampleController.Instance.Log("Became null", true);
-            try
-            {
-                _spatialAnchor = gameObject.AddComponent<OVRSpatialAnchor>();
-
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e.Message);
-            }
-            SampleController.Instance.Log("Anchor: " + (_spatialAnchor == null), true);
-        }
-    }
-
-    private void Update()
-    {
-        
     }
 
     private IEnumerator Start()
@@ -124,16 +105,7 @@ public class SharedAnchor : MonoBehaviour
         }
         else
         {
-            _spatialAnchor = GetComponent<OVRSpatialAnchor>();
-            if (_spatialAnchor == null)
-            {
-                SampleController.Instance.Log("Became null");
-                Destroy(gameObject);
-            }
-            else
-            {
-                anchorName.text = _spatialAnchor.Uuid.ToString("D");
-            }
+            Destroy(gameObject);
         }
 
         if (SampleController.Instance.automaticCoLocation)
@@ -203,25 +175,28 @@ public class SharedAnchor : MonoBehaviour
 
         if (_spatialAnchor == null)
         {
-
             SampleController.Instance.Log("Can't share - no associated spatial anchor");
             return false;
-
         }
         return true;
     }
 
+    int onlyOnce = 0;
     public void OnShareButtonPressed()
     {
-        SampleController.Instance.Log(nameof(OnShareButtonPressed));
-
-        if (!IsReadyToShare())
+        if (onlyOnce % 2 == 0)
         {
-            return;
-        }
+            SampleController.Instance.Log(nameof(OnShareButtonPressed));
 
-        IsSelectedForShare = true;
-        SaveToCloudThenShare();
+            if (!IsReadyToShare())
+            {
+                return;
+            }
+
+            IsSelectedForShare = true;
+            SaveToCloudThenShare();
+        }
+        onlyOnce++;
     }
 
     private void SaveToCloudThenShare()
@@ -285,7 +260,7 @@ public class SharedAnchor : MonoBehaviour
                 spatialAnchor.GetComponent<SharedAnchor>().shareIcon.color = Color.red;
             }
             return;
-        }     
+        }
 
         var uuids = new Guid[spatialAnchors.Count];
         var uuidIndex = 0;

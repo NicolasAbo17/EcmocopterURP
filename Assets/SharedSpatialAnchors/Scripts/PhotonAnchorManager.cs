@@ -29,6 +29,7 @@ using System.IO.Compression;
 using UnityEngine;
 using PhotonPun = Photon.Pun;
 using PhotonRealtime = Photon.Realtime;
+using TMPro;
 
 /// <summary>
 /// Manages Photon Room creation and maintenence, and tracks anchor sharing information.
@@ -322,6 +323,26 @@ public class PhotonAnchorManager : PhotonPun.MonoBehaviourPunCallbacks
         }
 
         JoinRoomFromLobby(roomName.text);
+        if (controlPanel)
+            controlPanel.DisplayMenuPanel();
+    }
+
+    public void OnJoinRoomButtonPressed()
+    {
+        SampleController.Instance.Log("OnJoinRoomButtonPressed");
+        if(controlPanel.lobbyRowList.Count <= 0)
+        {
+            SampleController.Instance.Log("No rooms");
+            return;
+        }
+
+        if (PhotonPun.PhotonNetwork.NickName == "")
+        {
+            string testName = "TestUser" + UnityEngine.Random.Range(0, 1000);
+            PhotonPun.PhotonNetwork.NickName = testName;
+        }
+
+        JoinRoomFromLobby(controlPanel.lobbyRowList[0].GetComponentInChildren<TextMeshProUGUI>().text);
         if (controlPanel)
             controlPanel.DisplayMenuPanel();
     }

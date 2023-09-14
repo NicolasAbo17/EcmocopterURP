@@ -68,7 +68,7 @@ public class SharedAnchorControlPanel : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI roomText;
 
-    List<GameObject> lobbyRowList = new List<GameObject>();
+    public List<GameObject> lobbyRowList = new List<GameObject>();
 
     public TextMeshProUGUI RoomText
     {
@@ -221,6 +221,7 @@ public class SharedAnchorControlPanel : MonoBehaviour
 
         if (roomList.Count > 0)
         {
+            Debug.LogWarning("There is a room! " + roomList[0].Name);
             for (int i = 0; i < roomList.Count; i++)
             {
                 if (roomList[i].PlayerCount == 0)

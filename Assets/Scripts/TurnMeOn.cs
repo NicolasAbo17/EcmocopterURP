@@ -29,7 +29,7 @@ public class TurnMeOn : MonoBehaviour
 
         targetCamera.clearFlags = CameraClearFlags.Skybox;
 
-        GameObject heli = Instantiate(Helicopter, new Vector3(this.transform.position.x + (-0.5f), this.transform.position.y + (-0.6f), this.transform.position.z), new Quaternion(0, this.transform.rotation.y, 0, this.transform.rotation.w));
+        GameObject heli = Instantiate(Helicopter, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), new Quaternion(0, this.transform.rotation.y, 0, this.transform.rotation.w));
 
         for (int i = 0; i < manager.Length; i++)
         {
@@ -79,7 +79,7 @@ public class TurnMeOn : MonoBehaviour
 
         for (int i = 0; i < Mover.Length; i++)
         {
-            Mover[i].GetComponent<SceneMover>().enabled = true; 
+            //Mover[i].GetComponent<SceneMover>().enabled = true; 
         }
     }
 }

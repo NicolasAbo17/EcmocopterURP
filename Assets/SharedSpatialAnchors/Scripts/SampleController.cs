@@ -77,11 +77,12 @@ public class SampleController : MonoBehaviour
 
         gameObject.AddComponent<SharedAnchorLoader>();
 
-        placementPreview.transform.parent = rightHandAnchor;
+
         placementPreview.transform.localPosition = Vector3.zero;
         placementPreview.transform.localRotation = Quaternion.identity;
         placementPreview.transform.localScale = Vector3.one;
         placementPreview.SetActive(false);
+
         _rayInteractor = FindObjectOfType<RayInteractor>();
     }
 
